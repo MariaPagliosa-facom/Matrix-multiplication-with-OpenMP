@@ -27,59 +27,26 @@ Versões com OpenMP respeitam OMP_NUM_THREADS.
 ./seq_naive 2048
 ./seq_ikj   2048
 ```
-**Compilar e executar algoritmo sequencial**
+#### Naive + OpenMP 2D
 ```sh
-g++ seq_sorting.cpp -o seq_sort
-
-# ordenar 100 mil
-./seq_sort 100k.txt 100k_sorted_seq.txt
-
-# ordenar 1 milhão
-./seq_sort 1M.txt 1M_sorted_seq.txt
-
-# ordenar 10 milhões
-./seq_sort 10M.txt 10M_sorted_seq.txt
+export OMP_NUM_THREADS=8;  ./omp2d_naive 512
+export OMP_NUM_THREADS=16; ./omp2d_naive 1024
 ```
-**Compilar e executar algoritmo paralelo**
+
+**Tiling + OpenMP 1D**
 ```sh
-mpic++ -O3 -march=native -funroll-loops -o main.cpp phases.cpp par_sort
+export OMP_NUM_THREADS=8;  ./omp1d_tiled 512 128
 
-# ordenar 100 mil p = 2
-mpirun -np 2 ./par_sort 100k.txt 100k_sorted_par2p.txt
-
-# ordenar 1 milhão p = 2
-mpirun -np 2 ./par_sort 1M.txt 1M_sorted_par2p.txt
-
-# ordenar 10 milhões p = 2
-mpirun -np 2 ./par_sort 10M.txt 10M_sorted_par2p.txt
-
-# ordenar 100 mil p = 4
-mpirun -np 4 ./par_sort 100k.txt 100k_sorted_par4p.txt
-
-# ordenar 1 milhão p = 4
-mpirun -np 4 ./par_sort 1M.txt 1M_sorted_par4p.txt
-
-# ordenar 10 milhões p = 4
-mpirun -np 4 ./par_sort 10M.txt 10M_sorted_par4p.txt
-
-# ordenar 100 mil p = 8
-mpirun -np 8 ./par_sort 100k.txt 100k_sorted_par8p.txt
-
-# ordenar 1 milhão p = 8
-mpirun -np 8 ./par_sort 1M.txt 1M_sorted_par8p.txt
-
-# ordenar 10 milhões p = 8
-mpirun -np 8 ./par_sort 10M.txt 10M_sorted_par8p.txt
+export OMP_NUM_THREADS=16; ./omp1d_tiled 1024 64
+export OMP_NUM_THREADS=16; ./omp1d_tiled 2048 64
+export OMP_NUM_THREADS=16; ./omp1d_tiled 2048 128   # comparar BS
 ```
-## Resultados (gráficos)
-Os gráficos a seguir mostram os resultados das execuções das linhas acima em um computador equipado com processador Ryzen 9 com 16 núcleos.
-![Tempo vs. tamanho](figures/barras_colorido_log_tempo_vs_dataset.png)
 
-### Tempo vs nº de processos
-| 100K | 1M | 10M |
-|---|---|---|
-| <img src="figures/barras_tempo_vs_processos_100K.png" width="300"> | <img src="figures/barras_tempo_vs_processos_1M.png" width="300"> | <img src="figures/barras_tempo_vs_processos_10M.png" width="300"> |
-### Speedup vs nº de processos
-| 100K | 1M | 10M |
-|---|---|---|
-| <img src="figures/barras_speedup_vs_processos_100K.png" width="300"> | <img src="figures/barras_speedup_vs_processos_1M.png" width="300"> | <img src="figures/barras_speedup_vs_processos_10M.png" width="300"> |
+**Tiling + OpenMP 2D**
+```sh
+export OMP_NUM_THREADS=8;  ./omp2d_tiled 512 128
+
+export OMP_NUM_THREADS=16; ./omp2d_tiled 1024 64
+export OMP_NUM_THREADS=16; ./omp2d_tiled 2048 64
+export OMP_NUM_THREADS=16; ./omp2d_tiled 2048 128   # comparar BS
+```
