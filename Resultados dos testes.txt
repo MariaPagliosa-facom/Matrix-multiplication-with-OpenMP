@@ -1,0 +1,80 @@
+./seq_naive 512
+n=512  C[0,0]=0  tempo(s)=0.291904
+n=512  C[0,0]=0  tempo(s)=0.539567
+n=512  C[0,0]=0  tempo(s)=0.536619
+
+./seq_ikj   512
+n=512  C[0,0]=0  tempo(s)=0.0570461
+n=512  C[0,0]=0  tempo(s)=0.0572114
+n=512  C[0,0]=0  tempo(s)=0.0570935
+
+./seq_naive 1024
+n=1024  C[0,0]=0  tempo(s)=4.46324
+n=1024  C[0,0]=0  tempo(s)=5.18889
+n=1024  C[0,0]=0  tempo(s)=4.93594
+
+
+./seq_ikj   1024
+n=1024  C[0,0]=0  tempo(s)=0.456342
+n=1024  C[0,0]=0  tempo(s)=0.455906
+n=1024  C[0,0]=0  tempo(s)=0.462583
+
+./seq_naive 2048
+n=2048  C[0,0]=0  tempo(s)=88.7603
+n=2048  C[0,0]=0  tempo(s)=63.9141
+n=2048  C[0,0]=0  tempo(s)=40.8923
+
+./seq_ikj   2048
+n=2048  C[0,0]=0  tempo(s)=4.1646
+n=2048  C[0,0]=0  tempo(s)=4.00377
+n=2048  C[0,0]=0  tempo(s)=4.09949
+
+export OMP_NUM_THREADS=8;  ./omp2d_naive 512
+n=512  threads=8  C[0,0]=0  tempo(s)=0.0419351
+n=512  threads=8  C[0,0]=0  tempo(s)=0.0434373
+n=512  threads=8  C[0,0]=0  tempo(s)=0.0426701
+
+export OMP_NUM_THREADS=16; ./omp2d_naive 1024
+n=1024  threads=16  C[0,0]=0  tempo(s)=0.291989
+n=1024  threads=16  C[0,0]=0  tempo(s)=0.266157
+n=1024  threads=16  C[0,0]=0  tempo(s)=0.264754
+
+export OMP_NUM_THREADS=8;  ./omp1d_tiled 512 128
+n=512  BS=128  threads=8  C[0,0]=0  tempo(s)=0.0107731
+n=512  BS=128  threads=8  C[0,0]=0  tempo(s)=0.0106282
+n=512  BS=128  threads=8  C[0,0]=0  tempo(s)=0.0108154
+
+export OMP_NUM_THREADS=16; ./omp1d_tiled 1024 64
+n=1024  BS=64  threads=16  C[0,0]=0  tempo(s)=0.0528979
+n=1024  BS=64  threads=16  C[0,0]=0  tempo(s)=0.0456395
+n=1024  BS=64  threads=16  C[0,0]=0  tempo(s)=0.0523696
+
+export OMP_NUM_THREADS=16; ./omp1d_tiled 2048 64
+n=2048  BS=64  threads=16  C[0,0]=0  tempo(s)=0.4090
+n=2048  BS=64  threads=16  C[0,0]=0  tempo(s)=0.378936
+n=2048  BS=64  threads=16  C[0,0]=0  tempo(s)=0.360814
+
+export OMP_NUM_THREADS=16; ./omp1d_tiled 2048 128
+n=2048  BS=128  threads=16  C[0,0]=0  tempo(s)=0.368886
+n=2048  BS=128  threads=16  C[0,0]=0  tempo(s)=0.347419
+n=2048  BS=128  threads=16  C[0,0]=0  tempo(s)=0.355935
+
+export OMP_NUM_THREADS=8;  ./omp2d_tiled 512 128
+n=512  BS=128  threads=8  C[0,0]=0  tempo(s)=0.0088819
+n=512  BS=128  threads=8  C[0,0]=0  tempo(s)=0.0084528
+n=512  BS=128  threads=8  C[0,0]=0  tempo(s)=0.0089379
+
+export OMP_NUM_THREADS=16; ./omp2d_tiled 1024 64
+n=1024  BS=64  threads=16  C[0,0]=0  tempo(s)=0.0527887
+n=1024  BS=64  threads=16  C[0,0]=0  tempo(s)=0.0514728
+n=1024  BS=64  threads=16  C[0,0]=0  tempo(s)=0.0471997
+
+export OMP_NUM_THREADS=16; ./omp2d_tiled 2048 64
+n=2048  BS=64  threads=16  C[0,0]=0  tempo(s)=0.367371
+n=2048  BS=64  threads=16  C[0,0]=0  tempo(s)=0.397277
+n=2048  BS=64  threads=16  C[0,0]=0  tempo(s)=0.436053
+
+export OMP_NUM_THREADS=16; ./omp2d_tiled 2048 128
+n=2048  BS=128  threads=16  C[0,0]=0  tempo(s)=0.390729
+n=2048  BS=128  threads=16  C[0,0]=0  tempo(s)=0.310427
+n=2048  BS=128  threads=16  C[0,0]=0  tempo(s)=0.38351
