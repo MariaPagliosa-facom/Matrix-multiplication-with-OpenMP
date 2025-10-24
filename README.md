@@ -1,14 +1,13 @@
 # Multiplicação de Matrizes com OpenMP
 Implementações para comparar sequencial, OpenMP 1D com tiling e OpenMP 2D (naive collapse(2) e tiling) na multiplicação densa 𝐶 = 𝐴 × 𝐵 de matrizes 𝑛 × 𝑛 em C/C++.
 
-'''
+'''sh
 sudo apt install build-essential
 '''
 
 **Compilação**  
 
 ```sh
-cd src
 make
 ```
 
